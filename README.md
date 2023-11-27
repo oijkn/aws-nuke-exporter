@@ -14,7 +14,7 @@ AWS Nuke Exporter is a Python tool designed to parse and export the output logs 
 
 ## Requirements
 - Python 3
-- AWS CLI (for AWS Nuke command execution)
+- AWS CLI (for `aws-nuke` command execution)
 
 ## Installation
 
@@ -49,8 +49,10 @@ aws-nuke-exporter <path-to-aws-nuke-output> -f <format> -d <destination-path>
 ### Arguments
 
 - `path-to-aws-nuke-output`: The file path where AWS Nuke output is stored.
-- `-f, --format [json|csv]`: The output format. Choose between JSON and CSV. Default is JSON.
-- `-d, --destination`: The path where the exported file will be saved. Optional.
+- `-f, --format [json|csv]`: The output format. Choose between JSON and CSV (default: JSON).
+- `-d, --destination`: The path where the exported file will be saved (optional).
+- `-q, --quiet`: Run in quiet mode, no logs will be printed to stdout (default: False).
+- `-v, --version`: Prints the version of the tool.
 
 ### Examples
 
@@ -74,3 +76,8 @@ This project is licensed under the [GNU General Public License (GPL)](LICENSE).
 
 ## Contact
 For any questions or feedback, please open an issue on GitHub.
+
+
+# TODO:
+- Add Dockerfile
+> docker run --rm -v ./:/data test /data/aws-nuke-output.txt -d /data/export.json
