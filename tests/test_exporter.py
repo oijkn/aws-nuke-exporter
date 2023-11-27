@@ -1,20 +1,25 @@
-import unittest
-from aws_nuke_exporter.exporter import AwsNukeExporter
+import csv
 import json
 import os
-import csv
+import unittest
+from unittest.mock import patch
+
+from aws_nuke_exporter.exceptions import InvalidExtensionError, ExportToJsonError, ExportToCsvError, ProcessingError
+from aws_nuke_exporter.exporter import AwsNukeExporter
 
 
 class TestAwsNukeExporter(unittest.TestCase):
 
     def setUp(self):
-        # Utiliser un chemin de fichier fictif pour les tests
-        self.exporter = AwsNukeExporter("dummy_path.log", "json", "dummy_output.json")
+        """Use a fake file path for the tests and mute the logger."""
+        with patch('aws_nuke_exporter.exporter.JsonLogger') as MockLogger:
+            MockLogger.return_value.mute.return_value = None
+            self.exporter = AwsNukeExporter("dummy_path.log", "json", "dummy_output.json")
 
     def test_remove_ansi_codes(self):
         """Test that ANSI codes are removed from a string."""
         test_str = "\x1b[31mThis is a test string.\x1b[0m"
-        clean_str = self.exporter.remove_ansi_codes(test_str)
+        clean_str = self.exporter._remove_ansi_codes(test_str)
         self.assertEqual(clean_str, "This is a test string.")
 
     def test_parse_line_structured_details(self):
@@ -27,7 +32,7 @@ class TestAwsNukeExporter(unittest.TestCase):
             "Details": {"Key": "Value", "Tag": {"Name": "Sample"}},
             "RemovalStatus": "status"
         }
-        self.assertEqual(self.exporter.parse_line_structured_details(test_line), expected_output)
+        self.assertEqual(self.exporter._parse_line_structured_details(test_line), expected_output)
 
     def test_export_to_json(self):
         """Create a fake JSON file and check that it contains the expected data and is deleted afterward."""
@@ -40,6 +45,10 @@ class TestAwsNukeExporter(unittest.TestCase):
             data = json.load(f)
             self.assertEqual(data, test_data)
         os.remove("test_output.json")
+
+        self.exporter.destination = "test_output.txt"  # Intentionally incorrect extension
+        with self.assertRaises(ExportToJsonError):
+            self.exporter._export_to_json(test_data)
 
     def test_export_to_csv(self):
         """Create a fake CSV file and check that it contains the expected data and is deleted afterward."""
@@ -54,11 +63,14 @@ class TestAwsNukeExporter(unittest.TestCase):
                 self.assertEqual(row["ID"], "i-xxxxxxx")
         os.remove("test_output.csv")
 
+        self.exporter.destination = "test_output.txt"  # Intentionally incorrect extension
+        with self.assertRaises(ExportToCsvError):
+            self.exporter._export_to_csv(test_data)
+
     def test_ensure_correct_extension(self):
         """Test that the exporter raises an error when the extension is incorrect."""
-        with self.assertRaises(ValueError):
-            self.exporter._ensure_correct_extension(".csv")
-            self.exporter.destination = "incorrect_extension.txt"
+        self.exporter.destination = "incorrect_extension.txt"
+        with self.assertRaises(InvalidExtensionError):
             self.exporter._ensure_correct_extension(".json")
 
 
