@@ -1,0 +1,137 @@
+{
+    "global": {
+        "IAMPolicy": [
+            {
+                "Region": "global",
+                "ResourceType": "IAMPolicy",
+                "ID": "xxx-xxx-xxx",
+                "Details": {
+                    "ARN": "xxx-xxx-xxx",
+                    "Name": "xxx-xxx-xxx",
+                    "Path": "/service-role/",
+                    "PolicyID": "ANPARPRZUAV4ZKW3CW2YY"
+                },
+                "RemovalStatus": "would remove"
+            },
+            {
+                "Region": "global",
+                "ResourceType": "IAMPolicy",
+                "ID": "xxx-xxx-xxx",
+                "Details": {
+                    "ARN": "xxx-xxx-xxx",
+                    "Name": "xxx-xxx-xxx",
+                    "Path": "/",
+                    "PolicyID": "ANPARPRZUAV4RMNN6OQRA"
+                },
+                "RemovalStatus": "would remove"
+            }
+        ],
+        "IAMUser": [
+            {
+                "Region": "global",
+                "ResourceType": "IAMUser",
+                "ID": "xxx-xxx-xxx",
+                "Details": {
+                    "Tag": {
+                        "Application": "xxx-xxx-xxx",
+                        "Automated": "true",
+                        "Billing": "sbx",
+                        "Name": "xxx-xxx-xxx",
+                        "Project": "xxx-xxx-xxx",
+                        "ServiceLevel": "AlwaysOn"
+                    },
+                    "CreateDate": "xxx-xxx-xxx",
+                    "Name": "xxx-xxx-xxx"
+                },
+                "RemovalStatus": "would remove"
+            }
+        ],
+        "IAMRolePolicyAttachment": [
+            {
+                "Region": "global",
+                "ResourceType": "IAMRolePolicyAttachment",
+                "ID": "xxx-xxx-xxx -> xxx-xxx-xxx",
+                "Details": {
+                    "Tag": {
+                        "role:Application": "indasmart",
+                        "role:Automated": "true",
+                        "role:Billing": "sbx",
+                        "role:Name": "execmgr",
+                        "role:Project": "indasmart",
+                        "role:ServiceLevel": "AlwaysOn"
+                    },
+                    "PolicyArn": "xxx-xxx-xxx",
+                    "PolicyName": "xxx-xxx-xxx",
+                    "RoleCreateDate": "xxx-xxx-xxx",
+                    "RoleLastUsed": "xxx-xxx-xxx",
+                    "RoleName": "xxx-xxx-xxx",
+                    "RolePath": "/"
+                },
+                "RemovalStatus": "would remove"
+            }
+        ],
+        "IAMRolePolicy": [
+            {
+                "Region": "global",
+                "ResourceType": "IAMRolePolicy",
+                "ID": "xxx-xxx-xxx -> xxx-xxx-xxx",
+                "Details": {
+                    "Tag": {
+                        "role:Application": "vm-manager",
+                        "role:Automated": "true",
+                        "role:Billing": "sbx",
+                        "role:Name": "xxx-xxx-xxx",
+                        "role:Project": "vm-manager",
+                        "role:ServiceLevel": "AlwaysOn"
+                    },
+                    "PolicyName": "xxx-xxx-xxx",
+                    "Role": {
+                        "CreateDate": "xxx-xxx-xxx",
+                        "LastUsed": "xxx-xxx-xxx",
+                        "Path": "/",
+                        "RoleID": "AROARPRZUAV4VGJQ33IM7",
+                        "RoleName": "xxx-xxx-xxx"
+                    }
+                },
+                "RemovalStatus": "would remove"
+            }
+        ]
+    },
+    "xxx-xxx-xxx": {
+        "EC2Subnet": [
+            {
+                "Region": "xxx-xxx-xxx",
+                "ResourceType": "EC2Subnet",
+                "ID": "1msubnet-02354ee8e36eb0a02",
+                "Details": {
+                    "Tag": {
+                        "Application": "infra",
+                        "Automated": "true",
+                        "Billing": "sbx",
+                        "BusinessService": "subnet",
+                        "Name": "xxx-xxx-xxx",
+                        "Network": "private",
+                        "Project": "infra",
+                        "ServiceLevel": "AlwaysOn"
+                    },
+                    "DefaultForAz": "false",
+                    "DefaultVPC": "false",
+                    "OwnerID": "012345678912"
+                },
+                "RemovalStatus": "would remove"
+            }
+        ],
+        "LambdaLayer": [
+            {
+                "Region": "xxx-xxx-xxx",
+                "ResourceType": "LambdaLayer",
+                "ID": "xxx-xxx-xxx",
+                "Details": {
+                    "Name": "xxx-xxx-xxx",
+                    "Version": "1"
+                },
+                "RemovalStatus": "would remove"
+            }
+        ]
+    }
+}
