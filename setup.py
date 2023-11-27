@@ -1,8 +1,9 @@
+from aws_nuke_exporter import __version__
 from setuptools import setup, find_packages
 
 setup(
     name='aws-nuke-exporter',
-    version='1.0.0',
+    version=__version__,
     author='oijkn',
     author_email='peacefull64@hotmail.fr',
     packages=find_packages(),
