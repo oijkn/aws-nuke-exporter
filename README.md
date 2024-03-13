@@ -46,6 +46,16 @@ After installation, you can use `aws-nuke-exporter` from the command line:
 aws-nuke-exporter <path-to-aws-nuke-output> -f <format> -d <destination-path>
 ```
 
+Or alternatively, build and use the Docker image. To build the image:
+```bash
+docker build -t aws-nuke-exporter .
+```
+To use the docker image run it as follows:
+
+```bash
+docker run docker run --rm -v $PWD/:/data <image_name> /data/<aws-nuke-output_file> -d /data/<exported_file>
+```
+
 ### Arguments
 
 - `path-to-aws-nuke-output`: The file path where AWS Nuke output is stored.
@@ -68,6 +78,11 @@ Export AWS Nuke output to CSV with a custom destination:
 aws-nuke-exporter output.log -f csv -d /path/to/export.csv
 ```
 
+Run the docker image, passing in the current directory and exporting as JSON to a file named 'export.json':
+```bash
+docker run --rm -v $PWD/:/data nuke-export /data/aws-nuke-output.txt -d /data/export.json
+```
+
 ## Contributing
 Contributions to the AWS Nuke Exporter are welcome. Please ensure that your code adheres to the existing style and that all tests pass.
 
@@ -76,8 +91,3 @@ This project is licensed under the [GNU General Public License (GPL)](LICENSE).
 
 ## Contact
 For any questions or feedback, please open an issue on GitHub.
-
-
-# TODO:
-- Add Dockerfile
-> docker run --rm -v ./:/data test /data/aws-nuke-output.txt -d /data/export.json
