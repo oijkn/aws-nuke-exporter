@@ -11,7 +11,7 @@ from aws_nuke_exporter.json_logger import JsonLogger
 
 class AwsNukeExporter:
     ANSI_ESCAPE_PATTERN = re.compile(r"\x1b\[\d*m")
-    LINE_PATTERN = re.compile(r"(\S+) - (\S+) - (\S.*?) - \[(.*?)\] - (\S.*)")
+    LINE_PATTERN = re.compile(r"(\S+) - (\S+) - (\S.*?) - (?:\[(.*?)\] - )?(\S.*)")
 
     def __init__(self, report_path, output_format="json", destination=None, logger=None):
         self.report_path = report_path
@@ -46,11 +46,12 @@ class AwsNukeExporter:
             return None
 
         region, resource_type, resource_id, details, status = match.groups()
+        details = details or ""  # Ensure details is not None
         return {
             "Region": region,
             "ResourceType": resource_type,
             "ID": resource_id,
-            "Details": self._parse_and_structure_details(details.split(", ")),
+            "Details": self._parse_and_structure_details(details.split(", ")) if details else {},
             "RemovalStatus": status,
         }
 

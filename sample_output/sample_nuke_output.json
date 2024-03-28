@@ -68,6 +68,13 @@
                     "RolePath": "/"
                 },
                 "RemovalStatus": "would remove"
+            },
+            {
+                "Region": "global",
+                "ResourceType": "IAMRolePolicyAttachment",
+                "ID": "1mAWSServiceRoleForMigrationHub -> MigrationHubServiceRolePolicy",
+                "Details": {},
+                "RemovalStatus": "[PolicyArn: \"xxx-xxx-xxx\", PolicyName: \"MigrationHubServiceRolePolicy\", RoleCreateDate: \"xxx-xxx-xxx\", RoleLastUsed: \"xxx-xxx-xxx\", RoleName: \"AWSServiceRoleForMigrationHub\", RolePath: \"/xxx-xxx-xxx - cannot detach from service roles"
             }
         ],
         "IAMRolePolicy": [
@@ -94,10 +101,26 @@
                     }
                 },
                 "RemovalStatus": "would remove"
+            },
+            {
+                "Region": "global",
+                "ResourceType": "IAMRolePolicy",
+                "ID": "xxx-xxx-xxx -> terraform-2023111309155894560000000c",
+                "Details": {},
+                "RemovalStatus": "[PolicyName: \"terraform-2023111309155894560000000c\", role:CreateDate:<<OutputTruncated>>"
             }
         ]
     },
     "xxx-xxx-xxx": {
+        "AppStreamImage": [
+            {
+                "Region": "xxx-xxx-xxx",
+                "ResourceType": "AppStreamImage",
+                "ID": "xxx-xxx-xxx",
+                "Details": {},
+                "RemovalStatus": "cannot delete public AWS images"
+            }
+        ],
         "EC2Subnet": [
             {
                 "Region": "xxx-xxx-xxx",
@@ -130,6 +153,26 @@
                     "Name": "xxx-xxx-xxx",
                     "Version": "1"
                 },
+                "RemovalStatus": "would remove"
+            }
+        ]
+    },
+    "us-east-1": {
+        "ECSTask": [
+            {
+                "Region": "us-east-1",
+                "ResourceType": "ECSTask",
+                "ID": "arn:aws:ecs:us-east-1:xxxx:task/ecs-cluster-xxxx/xxxxxxxxxxxx -> arn:aws:ecs:us-east-1:xxxx:cluster/ecs-cluster-xxxx",
+                "Details": {},
+                "RemovalStatus": "arn:aws:ecs:us-east-1:xxxx:cluster/ecs-cluster-xxxx - [ClusterARN: \"arn:aws:ecs:us-east-1:xxxx:cluster/ecs-cluster-xxxx\", TaskARN: \"arn:aws:ecs:us-east-1:xxxx:task/ecs-cluster-xxxx/xxxxxxxxxxxx\"] - would remove"
+            }
+        ],
+        "NetpuneSnapshot": [
+            {
+                "Region": "us-east-1",
+                "ResourceType": "NetpuneSnapshot",
+                "ID": "rds:aurora-cluster-demo-2024-03-xx-xx-xx",
+                "Details": {},
                 "RemovalStatus": "would remove"
             }
         ]
