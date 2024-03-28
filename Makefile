@@ -16,10 +16,10 @@ check-twine:
 	@command -v twine > /dev/null 2>&1 || pip install twine --user
 
 upload-test: build check-twine
-	twine upload -r $(TEST_PYPI_REPO) dist/*$(VERSION)*
+	twine upload --config-file .pypirc -r $(TEST_PYPI_REPO) dist/*$(VERSION)*
 
 upload: build check-twine
-	twine upload -r $(PYPI_REPO) dist/*$(VERSION)*
+	twine upload --config-file .pypirc -r $(PYPI_REPO) dist/*$(VERSION)*
 
 install-test:
 	pip install -i $(TEST_PYPI_INDEX) --upgrade $(PACKAGE_NAME)
